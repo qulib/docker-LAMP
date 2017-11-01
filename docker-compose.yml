@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  db:
+    image: mariadb:5.5.57
+    container_name: database
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: qul_d7_db
+        MYSQL_USER: drupal
+        MYSQL_PASSWORD: drupal
+
+  memcached:
+    image: memcached:1.5.1
+    container_name: memcached
+    ports:
+      - "11211:11211"
+    command: memcached -m 1024m
+
+  web:
+    # image: drupal:7.56
+    image: qul_web
+    build: ./config/web
+    container_name: web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./www:/var/www/html
+    links:
+      - db
+      - memcached
+
+volumes:
+  data:
+  www:
