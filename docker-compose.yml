@@ -22,7 +22,6 @@ services:
     command: memcached -m 1024m
 
   web:
-    # image: drupal:7.56
     image: qul_web
     build: ./config/web
     container_name: web
