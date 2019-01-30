@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
 
   db:
@@ -7,7 +7,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./data:/var/lib/mysql:cached
+      - ./data:/var/lib/mysql
     environment:
         MYSQL_ROOT_PASSWORD: password
         MYSQL_DATABASE: qul_d7_db
@@ -15,13 +15,18 @@ services:
         MYSQL_PASSWORD: drupal
 
   memcached:
-    image: memcached:1.5.1
+    hostname: memcached
+    image: memcached:latest
     container_name: memcached
+    environment:
+    # Memcached memory limit in megabytes
+    - MEMCACHED_MEMORY_LIMIT=1024
     ports:
       - "11211:11211"
-    command: memcached -m 1024m
+    # command: memcached -m 1024m
 
   web:
+    # image: drupal:7.56
     image: qul_web
     build: ./config/web
     container_name: web
@@ -29,7 +34,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./www:/var/www/html:cached
+      - ./www:/var/www/html
     links:
       - db
       - memcached
