@@ -34,7 +34,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./www:/var/www/html
+      - ./www:/var/www/html:cached
+      - ./site-backups:/var/www/sites-backups
     links:
       - db
       - memcached
@@ -42,3 +43,4 @@ services:
 volumes:
   data:
   www:
+  site-backups:
