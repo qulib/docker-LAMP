@@ -43,7 +43,20 @@ $conf['page_cache_without_database'] = TRUE;
 $conf['page_cache_invoke_hooks'] = FALSE;
 
 ```
+
+Drush
+----
+Drush 8.1.18 included.
+Call drush outside docker web container as `docker exec -it web /drush/drush cc all`.
+
+PHP
+----
+Installing from PHP 7.2-apache package.
+
+Memcache
+----
+Installing memcached version 3.1.3.
+
 Todo
 ----
-- Add drush
 - Add [docker-sync](http://docker-sync.io/)
