@@ -1,4 +1,5 @@
 data/
 www/
 www
+www-*
 .DS_Store

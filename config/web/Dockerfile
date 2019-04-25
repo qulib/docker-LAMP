@@ -29,6 +29,10 @@ RUN pecl install memcached-3.1.3
 #RUN echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
 RUN docker-php-ext-enable memcached
 
+#jsmin
+RUN pecl install jsmin
+RUN docker-php-ext-enable jsmin
+
 # mysql client
 RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt
 RUN a2enmod rewrite
