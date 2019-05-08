@@ -36,7 +36,6 @@ services:
     volumes:
       - ./www:/var/www/html:cached
       - ./site-backups:/var/www/sites-backups
-      - /Applications/drush-7.x:/drush
     links:
       - db
       - memcached
