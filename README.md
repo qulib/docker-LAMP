@@ -47,7 +47,8 @@ $conf['page_cache_invoke_hooks'] = FALSE;
 Drush
 ----
 Drush 8.1.18 included.
-Call drush outside docker web container as `docker exec -it web /drush/drush cc all`.
+
+Call drush outside docker web container as `docker exec -it web drush ` + command.
 
 PHP
 ----
