@@ -34,7 +34,8 @@ RUN pecl install jsmin
 RUN docker-php-ext-enable jsmin
 
 # mysql client
-RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt
+#RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt
+RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
 RUN a2enmod rewrite
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN service apache2 restart
