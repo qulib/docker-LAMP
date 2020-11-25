@@ -8,10 +8,12 @@ ADD config/php.ini /usr/local/etc/php/
 ADD config/php.d/z-memcached.ini /usr/local/etc/php/conf.d/memcached.ini
 
 # # Set the Drush version.
-ENV DRUSH_VERSION 8.1.18
+ENV DRUSH_VERSION 8.4.5
+# ENV DRUSH_VERSION 8.1.18
+# ENV DRUSH_VERSION 8.3.3
 
-# # Install Drush 8 with the phar file.
-RUN curl -fsSL -o /usr/local/bin/drush "https://github.com/drush-ops/drush/releases/download/$DRUSH_VERSION/drush.phar" && chmod +x /usr/local/bin/drush
+# # Install Drush with the phar file.
+RUN curl -fsSL -o /usr/local/bin/drush.phar "https://github.com/drush-ops/drush/releases/download/$DRUSH_VERSION/drush.phar" && chmod +x /usr/local/bin/drush.phar 
 
 # # change ownership of drupal webroot
 RUN chown -R www-data:www-data /var/www/html/
@@ -35,7 +37,8 @@ RUN docker-php-ext-enable jsmin
 
 # mysql client
 #RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt
-RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
+#RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
+RUN apt-get update && apt-get install -y default-mysql-client && rm -rf /var/lib/apt
 RUN a2enmod rewrite
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN service apache2 restart
